@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{PROJECT_META_DESCRIPTION}} – Project by Merwan Abdela." />
+    <title>{{PROJECT_TITLE}} | Merwan Abdela</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- Shared design tokens + project styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/project.css" />
+    <link rel="stylesheet" href="css/project-guide.css" />
+</head>
+
+<body>
+
+    <!-- ── Navigation ─────────────────────────────── -->
+    <nav id="navbar">
+        <div class="container nav-inner">
+            <a href="projects.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                </svg>
+                Back to Projects
+            </a>
+            <a href="index.html" class="nav-logo">M<span>.</span>Abdela</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ════════════════════════════════════════════
+             HERO
+        ════════════════════════════════════════════ -->
+        <section id="project-hero">
+            <div class="container">
+                <div class="project-meta reveal">
+                    <!-- Add/remove tags as needed -->
+                    <span class="project-meta-tag">{{TAG_1}}</span>
+                    <span class="project-meta-tag">{{TAG_2}}</span>
+                    <span class="project-meta-tag">{{TAG_3}}</span>
+                    <span class="project-meta-year">{{YEAR}}</span>
+                </div>
+                <h1 class="project-hero-title reveal reveal-delay-1">
+                    {{HERO_TITLE_LINE_1}}<br /><span>{{HERO_TITLE_LINE_2}}</span>
+                </h1>
+                <p class="project-hero-summary reveal reveal-delay-2">
+                    {{HERO_SUMMARY_PARAGRAPH}}
+                </p>
+                <div class="tech-tags reveal reveal-delay-3">
+                    <!-- Add/remove tech tags as needed -->
+                    <span class="tech-tag">{{TECH_1}}</span>
+                    <span class="tech-tag">{{TECH_2}}</span>
+                    <span class="tech-tag">{{TECH_3}}</span>
+                    <span class="tech-tag">{{TECH_4}}</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero image full-width -->
+        <div class="guide-hero-image reveal">
+            <img src="assets/projects/{{HERO_IMAGE_FILE}}" alt="{{HERO_IMAGE_ALT}}" />
+            <div class="guide-hero-overlay">
+                <span class="guide-hero-label">// {{HERO_IMAGE_LABEL}}</span>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════
+             PROJECT OVERVIEW – QUICK STATS
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-surface">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Project Overview</span>
+                    <h2 class="section-title">What Is <span>This Build?</span></h2>
+                </div>
+                <div class="overview-grid">
+                    <div class="overview-text reveal">
+                        <p>
+                            {{OVERVIEW_PARAGRAPH_1}}
+                        </p>
+                        <p>
+                            {{OVERVIEW_PARAGRAPH_2}}
+                        </p>
+                        <p>
+                            {{OVERVIEW_PARAGRAPH_3}}
+                        </p>
+                    </div>
+                    <div class="stats-panel reveal reveal-delay-2">
+                        <!-- Add/remove stat rows as needed -->
+                        <div class="stat-row">
+                            <span class="stat-row-label">{{STAT_1_LABEL}}</span>
+                            <span class="stat-row-value">{{STAT_1_VALUE}}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">{{STAT_2_LABEL}}</span>
+                            <span class="stat-row-value">{{STAT_2_VALUE}}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">{{STAT_3_LABEL}}</span>
+                            <span class="stat-row-value">{{STAT_3_VALUE}}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">{{STAT_4_LABEL}}</span>
+                            <span class="stat-row-value">{{STAT_4_VALUE}}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">{{STAT_5_LABEL}}</span>
+                            <span class="stat-row-value">{{STAT_5_VALUE}}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">{{STAT_6_LABEL}}</span>
+                            <span class="stat-row-value">{{STAT_6_VALUE}}</span>
+                        </div>
+                        <div class="stat-row last">
+                            <span class="stat-row-label">Skill Level</span>
+                            <span class="stat-row-value highlight">{{SKILL_LEVEL}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             OPTIONAL: PRINT SETTINGS
+             (Remove this entire <section> if the project
+              does not involve 3D printing)
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-bg">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Print Settings</span>
+                    <h2 class="section-title">STL Files &amp; <span>Print Configuration</span></h2>
+                    <p class="section-description">{{PRINT_SETTINGS_INTRO}}</p>
+                </div>
+
+                <div class="print-grid">
+                    <!-- Recommended settings -->
+                    <div class="print-card reveal reveal-delay-1">
+                        <div class="print-card-header">
+                            <span class="print-card-icon">⚙️</span>
+                            <h3>Recommended Settings</h3>
+                        </div>
+                        <table class="spec-table">
+                            <tr>
+                                <td>Material</td>
+                                <td><strong>{{MATERIAL}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Layer Height</td>
+                                <td><strong>{{LAYER_HEIGHT}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Infill</td>
+                                <td><strong>{{INFILL}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Perimeters</td>
+                                <td><strong>{{PERIMETERS}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Support</td>
+                                <td>{{SUPPORT}}</td>
+                            </tr>
+                            <tr>
+                                <td>Bed Adhesion</td>
+                                <td>{{BED_ADHESION}}</td>
+                            </tr>
+                            <tr>
+                                <td>Nozzle Temp</td>
+                                <td>{{NOZZLE_TEMP}}</td>
+                            </tr>
+                            <tr>
+                                <td>Bed Temp</td>
+                                <td>{{BED_TEMP}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- STL parts list -->
+                    <div class="print-card reveal reveal-delay-2">
+                        <div class="print-card-header">
+                            <span class="print-card-icon">🖨️</span>
+                            <h3>Parts to Print</h3>
+                        </div>
+                        <ul class="parts-list">
+                            <li><span class="part-qty">×1</span><span class="part-name">{{PART_1_NAME}}</span><span
+                                    class="part-note">{{PART_1_NOTE}}</span></li>
+                            <li><span class="part-qty">×1</span><span class="part-name">{{PART_2_NAME}}</span><span
+                                    class="part-note">{{PART_2_NOTE}}</span></li>
+                            <!-- Add more <li> rows as needed -->
+                        </ul>
+                    </div>
+                    <!-- Tips -->
+                    <div class="print-card print-card-wide reveal reveal-delay-3">
+                        <div class="print-card-header">
+                            <span class="print-card-icon">💡</span>
+                            <h3>Important Print Notes</h3>
+                        </div>
+                        <div class="tips-grid">
+                            <div class="tip-item">
+                                <span class="tip-title">{{TIP_1_TITLE}}</span>
+                                <p>{{TIP_1_TEXT}}</p>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-title">{{TIP_2_TITLE}}</span>
+                                <p>{{TIP_2_TEXT}}</p>
+                            </div>
+                            <!-- Add more tip-item divs as needed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             COMPONENTS & PRODUCTS (Bill of Materials)
+             (Remove or simplify if no BOM is needed)
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-surface">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Bill of Materials</span>
+                    <h2 class="section-title">Components &amp; <span>Products</span></h2>
+                    <p class="section-description">{{BOM_INTRO}}</p>
+                </div>
+
+                <!-- Optional: BOM Image -->
+                <div class="bom-image reveal">
+                    <img src="assets/projects/{{BOM_IMAGE_FILE}}" alt="{{BOM_IMAGE_ALT}}" />
+                    <p class="image-caption">{{BOM_IMAGE_CAPTION}}</p>
+                </div>
+
+                <!-- Category 1: Hardware -->
+                <div class="bom-category reveal">
+                    <div class="bom-category-header">
+                        <span class="bom-icon">🔩</span>
+                        <h3>{{BOM_CATEGORY_1_TITLE}}</h3>
+                    </div>
+                    <div class="bom-table-wrapper">
+                        <table class="bom-table">
+                            <thead>
+                                <tr>
+                                    <th>Qty</th>
+                                    <th>Item</th>
+                                    <th>Spec</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>×1</td>
+                                    <td>{{ITEM_NAME}}</td>
+                                    <td>{{ITEM_SPEC}}</td>
+                                    <td>{{ITEM_NOTE}}</td>
+                                </tr>
+                                <!-- Add more <tr> rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Category 2: Electronics -->
+                <div class="bom-category reveal">
+                    <div class="bom-category-header">
+                        <span class="bom-icon">⚡</span>
+                        <h3>Electronics</h3>
+                    </div>
+                    <div class="product-cards-grid">
+                        <div class="product-card">
+                            <div class="product-card-tag">{{PRODUCT_TYPE}}</div>
+                            <div class="product-card-name">{{PRODUCT_NAME}}</div>
+                            <div class="product-card-spec">{{PRODUCT_SPEC}}</div>
+                            <p class="product-card-desc">{{PRODUCT_DESCRIPTION}}</p>
+                            <div class="product-card-meta">
+                                <span class="product-price">~€{{PRICE}}</span>
+                                <a href="{{BUY_LINK}}" class="product-link">Buy on {{STORE}} ↗</a>
+                            </div>
+                        </div>
+                        <!-- Duplicate the product-card div for more products -->
+                    </div>
+                </div>
+
+                <!-- Category 3: Tools -->
+                <div class="bom-category reveal">
+                    <div class="bom-category-header">
+                        <span class="bom-icon">🔧</span>
+                        <h3>Tools Needed</h3>
+                    </div>
+                    <div class="tools-grid">
+                        <div class="tool-item"><span>{{TOOL_1}}</span></div>
+                        <div class="tool-item"><span>{{TOOL_2}}</span></div>
+                        <div class="tool-item"><span>{{TOOL_3}}</span></div>
+                        <!-- Add more tool-item divs as needed -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             OPTIONAL: EXPLODED VIEW / DIAGRAM
+             (Remove if not applicable)
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-bg">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// {{DIAGRAM_SECTION_LABEL}}</span>
+                    <h2 class="section-title">{{DIAGRAM_TITLE_1}} <span>{{DIAGRAM_TITLE_2}}</span></h2>
+                </div>
+                <div class="exploded-wrapper reveal">
+                    <img src="assets/projects/{{DIAGRAM_IMAGE_FILE}}" alt="{{DIAGRAM_IMAGE_ALT}}" />
+                </div>
+                <div class="sub-assembly-grid">
+                    <div class="sub-item reveal reveal-delay-1">
+                        <span class="sub-number">A</span>
+                        <div>
+                            <strong>{{SUBASSEMBLY_A_TITLE}}</strong>
+                            <p>{{SUBASSEMBLY_A_DESC}}</p>
+                        </div>
+                    </div>
+                    <div class="sub-item reveal reveal-delay-2">
+                        <span class="sub-number">B</span>
+                        <div>
+                            <strong>{{SUBASSEMBLY_B_TITLE}}</strong>
+                            <p>{{SUBASSEMBLY_B_DESC}}</p>
+                        </div>
+                    </div>
+                    <div class="sub-item reveal reveal-delay-3">
+                        <span class="sub-number">C</span>
+                        <div>
+                            <strong>{{SUBASSEMBLY_C_TITLE}}</strong>
+                            <p>{{SUBASSEMBLY_C_DESC}}</p>
+                        </div>
+                    </div>
+                    <!-- Add more sub-item divs (D, E, F…) as needed -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             STEP-BY-STEP ASSEMBLY / BUILD GUIDE
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-surface">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Build Guide</span>
+                    <h2 class="section-title">Step-by-Step <span>Assembly</span></h2>
+                    <p class="section-description">{{STEPS_INTRO}}</p>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">01</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">{{STEP_1_TAG}}</div>
+                        <h3 class="step-title">{{STEP_1_TITLE}}</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> {{STEP_1_PARTS}}
+                        </div>
+                        <ol class="step-instructions">
+                            <li>{{STEP_1_INSTRUCTION_1}}</li>
+                            <li>{{STEP_1_INSTRUCTION_2}}</li>
+                            <li>{{STEP_1_INSTRUCTION_3}}</li>
+                        </ol>
+                        <!-- Optional: Warning note -->
+                        <div class="step-note">
+                            <span class="step-note-icon">⚠️</span>
+                            <p><strong>Important:</strong> {{STEP_1_WARNING}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">02</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">{{STEP_2_TAG}}</div>
+                        <h3 class="step-title">{{STEP_2_TITLE}}</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> {{STEP_2_PARTS}}
+                        </div>
+                        <ol class="step-instructions">
+                            <li>{{STEP_2_INSTRUCTION_1}}</li>
+                            <li>{{STEP_2_INSTRUCTION_2}}</li>
+                            <li>{{STEP_2_INSTRUCTION_3}}</li>
+                        </ol>
+                        <!-- Optional: Tip note -->
+                        <div class="step-note tip">
+                            <span class="step-note-icon">💡</span>
+                            <p><strong>Tip:</strong> {{STEP_2_TIP}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">03</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">{{STEP_3_TAG}}</div>
+                        <h3 class="step-title">{{STEP_3_TITLE}}</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> {{STEP_3_PARTS}}
+                        </div>
+                        <ol class="step-instructions">
+                            <li>{{STEP_3_INSTRUCTION_1}}</li>
+                            <li>{{STEP_3_INSTRUCTION_2}}</li>
+                            <li>{{STEP_3_INSTRUCTION_3}}</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!--
+                    DUPLICATE the step-block above for steps 04, 05, 06… etc.
+                    Just change the step-number, step-tag, step-title, and instructions.
+                -->
+
+                <!-- Optional: Code Block (for firmware / software projects) -->
+                <!--
+                <div class="code-block" style="margin-top:28px;">
+                    <div class="code-header">
+                        <span class="code-lang">{{CODE_LANGUAGE}}</span>
+                        <span class="code-file">{{CODE_FILENAME}}</span>
+                    </div>
+                    <pre><code>{{YOUR_CODE_HERE}}</code></pre>
+                </div>
+                -->
+
+                <!-- Final Step -->
+                <div class="step-block last-step reveal">
+                    <div class="step-number-col">
+                        <div class="step-number finish">✓</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Complete</div>
+                        <h3 class="step-title">{{FINAL_STEP_TITLE}}</h3>
+                        <ol class="step-instructions">
+                            <li>{{FINAL_INSTRUCTION_1}}</li>
+                            <li>{{FINAL_INSTRUCTION_2}}</li>
+                            <li>{{FINAL_INSTRUCTION_3}}</li>
+                        </ol>
+                        <div class="step-note tip">
+                            <span class="step-note-icon">🎉</span>
+                            <p><strong>Congratulations!</strong> {{FINAL_MESSAGE}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             LEARNINGS / REFLECTION
+        ════════════════════════════════════════════ -->
+        <section id="project-learnings">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="section-label">// Reflection</p>
+                    <h2 class="section-title">What I <span>Learned</span></h2>
+                </div>
+                <div class="learnings-grid">
+                    <div class="learning-card reveal reveal-delay-1">
+                        <div class="learning-icon">{{LEARNING_1_ICON}}</div>
+                        <h3>{{LEARNING_1_TITLE}}</h3>
+                        <p>{{LEARNING_1_TEXT}}</p>
+                    </div>
+                    <div class="learning-card reveal reveal-delay-2">
+                        <div class="learning-icon">{{LEARNING_2_ICON}}</div>
+                        <h3>{{LEARNING_2_TITLE}}</h3>
+                        <p>{{LEARNING_2_TEXT}}</p>
+                    </div>
+                    <div class="learning-card reveal reveal-delay-3">
+                        <div class="learning-icon">{{LEARNING_3_ICON}}</div>
+                        <h3>{{LEARNING_3_TITLE}}</h3>
+                        <p>{{LEARNING_3_TEXT}}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             CTA (Call to Action)
+        ════════════════════════════════════════════ -->
+        <section id="project-cta">
+            <div class="container">
+                <div class="cta-box reveal">
+                    <p class="cta-label">// {{CTA_LABEL}}</p>
+                    <h2 class="cta-title">{{CTA_TITLE}}</h2>
+                    <p class="cta-description">
+                        {{CTA_DESCRIPTION}}
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="{{CTA_PRIMARY_LINK}}" class="btn btn-primary" id="{{PROJECT_ID}}-github">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                            </svg>
+                            {{CTA_PRIMARY_TEXT}}
+                        </a>
+                        <a href="{{CTA_SECONDARY_LINK}}" class="btn btn-outline" id="{{PROJECT_ID}}-youtube">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75C14.13 2 12.64 2 12 2s-2.13 0-3.82 1.94a4.83 4.83 0 0 1-3.77 2.75C3 7.37 2 9.38 2 12s1 4.63 2.41 5.31a4.83 4.83 0 0 1 3.77 2.75C9.87 22 11.36 22 12 22s2.13 0 3.82-1.94a4.83 4.83 0 0 1 3.77-2.75C21 16.63 22 14.62 22 12s-1-4.63-2.41-5.31zM10 15.5v-7l6 3.5-6 3.5z" />
+                            </svg>
+                            {{CTA_SECONDARY_TEXT}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────── -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo">M<span>.</span>Abdela</div>
+            <p class="footer-copy">Designed &amp; built with <span>♥</span> by Merwan Abdela &nbsp;·&nbsp; 2025</p>
+            <div class="footer-socials">
+                <a href="https://linkedin.com/in/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                </a>
+                <a href="mailto:merwan@example.com" class="footer-social-link" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/project.js"></script>
+
+</body>
+
+</html>
