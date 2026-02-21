@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Merwan Abdela – Mechanical Engineering Student & Aspiring Robotics Engineer. Explore my projects, skills, and journey in robotics." />
+    <title>Merwan Abdela | Robotics Engineer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- ── Navigation ─────────────────────────────── -->
+    <nav id="navbar">
+        <div class="container nav-inner">
+            <a href="#hero" class="nav-logo">M<span>.</span>Abdela</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about" onclick="closeMobile()">About</a>
+            <a href="#skills" onclick="closeMobile()">Skills</a>
+            <a href="#projects" onclick="closeMobile()">Projects</a>
+            <a href="#contact" onclick="closeMobile()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- ── Hero ───────────────────────────────────── -->
+    <section id="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-orb"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Robotics Engineer in the Making</div>
+                <h1 class="hero-heading">
+                    Hi, I'm
+                    <span class="name">Merwan Abdela.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="highlight">Mechanical Engineering Student</span> &nbsp;·&nbsp;
+                    Aspiring <span class="highlight">Robotics Engineer</span>
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary" id="hero-view-work">
+                        <span>View My Work</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn btn-outline" id="hero-get-in-touch">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <div class="scroll-mouse">
+                <div class="scroll-dot"></div>
+            </div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ── About ──────────────────────────────────── -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <!-- Photo -->
+                <div class="about-photo-wrapper reveal">
+                    <span class="corner-tl"></span>
+                    <img src="assets/profile_placeholder.png" alt="Merwan Abdela – Profile Photo" class="about-photo"
+                        onerror="this.src='https://placehold.co/420x560/0d1220/00b4ff?text=Merwan+Abdela&font=montserrat'" />
+                </div>
+                <!-- Text -->
+                <div class="about-text">
+                    <div class="section-heading reveal">
+                        <p class="section-label">// About Me</p>
+                        <h2 class="section-title">Building the Future — <span>One System at a Time</span></h2>
+                    </div>
+                    <p class="reveal reveal-delay-1">
+                        I'm <strong>Merwan Abdela</strong>, a Mechanical Engineering student with a relentless curiosity
+                        for how things move, think, and interact with the world.
+                        While my degree gives me the fundamentals of structures, dynamics, and material science, my true
+                        passion lives at the intersection of machines and intelligence.
+                    </p>
+                    <p class="reveal reveal-delay-2">
+                        I'm on a mission to become a <strong>Robotics Engineer</strong> — someone who can design the
+                        physical hardware, wire the electronics,
+                        and write the software that brings autonomous systems to life.
+                        I believe the robots of tomorrow will be built by engineers who refuse to be siloed.
+                    </p>
+                    <p class="reveal reveal-delay-3">
+                        When I'm not in the lab or studying kinematics, you'll find me tinkering with Arduino projects,
+                        exploring ROS tutorials, or designing mechanical assemblies in SolidWorks.
+                    </p>
+                    <div class="about-stats reveal reveal-delay-4">
+                        <div class="stat-item">
+                            <span class="stat-value">ME</span>
+                            <span class="stat-label">Student</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">∞</span>
+                            <span class="stat-label">Curiosity</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">3+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Skills ─────────────────────────────────── -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-heading reveal">
+                <p class="section-label">// Technical Skills</p>
+                <h2 class="section-title">My <span>Toolkit</span></h2>
+                <p class="section-description">A blend of mechanical engineering fundamentals and robotics/software
+                    capabilities.</p>
+            </div>
+            <div class="skills-grid">
+                <!-- Mechanical -->
+                <div class="skill-category reveal reveal-delay-1">
+                    <span class="skill-category-icon">⚙️</span>
+                    <p class="skill-category-title">// Mechanical Engineering</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CAD Design</span>
+                        <span class="skill-tag">SolidWorks</span>
+                        <span class="skill-tag">3D Printing</span>
+                        <span class="skill-tag">Kinematics</span>
+                        <span class="skill-tag">FEA (Basics)</span>
+                        <span class="skill-tag">GD&amp;T</span>
+                    </div>
+                </div>
+                <!-- Robotics -->
+                <div class="skill-category reveal reveal-delay-2">
+                    <span class="skill-category-icon">🤖</span>
+                    <p class="skill-category-title">// Robotics &amp; Mechatronics</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">ROS</span>
+                        <span class="skill-tag">Mechatronics</span>
+                        <span class="skill-tag">Sensors &amp; Actuators</span>
+                        <span class="skill-tag">Control Systems</span>
+                    </div>
+                </div>
+                <!-- Software -->
+                <div class="skill-category reveal reveal-delay-3">
+                    <span class="skill-category-icon">💻</span>
+                    <p class="skill-category-title">// Programming</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">MATLAB (Basics)</span>
+                        <span class="skill-tag">Git &amp; GitHub</span>
+                        <span class="skill-tag">Web Dev (Basics)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Projects ───────────────────────────────── -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-heading reveal">
+                <p class="section-label">// Projects</p>
+                <h2 class="section-title">What I've <span>Built</span></h2>
+                <p class="section-description">A selection of hands-on projects bridging mechanical design and
+                    intelligent systems.</p>
+            </div>
+            <div class="projects-grid">
+
+                <!-- Project 1 -->
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-image-wrapper">
+                        <img src="assets/rover_project.png" alt="Autonomous Rover Prototype" class="project-image"
+                            onerror="this.src='https://placehold.co/600x360/0d1220/00b4ff?text=Rover+Project'" />
+                        <div class="project-overlay"></div>
+                        <span class="project-tag">Robotics</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Autonomous Rover Prototype</h3>
+                        <p class="project-description">
+                            A four-wheeled ground rover capable of basic obstacle avoidance using ultrasonic sensors.
+                            The chassis was designed in SolidWorks and 3D-printed, while the navigation logic
+                            was implemented in C++ on an Arduino Uno.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-pill">Arduino C++</span>
+                            <span class="tech-pill">SolidWorks</span>
+                            <span class="tech-pill">3D Printing</span>
+                            <span class="tech-pill">Ultrasonics</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary" id="rover-github">
+                                View GitHub
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-image-wrapper">
+                        <img src="assets/robot_arm_project.png" alt="Custom CAD Robotic Arm" class="project-image"
+                            onerror="this.src='https://placehold.co/600x360/0d1220/00b4ff?text=Robotic+Arm'" />
+                        <div class="project-overlay"></div>
+                        <span class="project-tag">CAD / Mechanical</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Custom CAD Robotic Arm</h3>
+                        <p class="project-description">
+                            A 4-DOF robotic arm designed entirely in SolidWorks with motion simulation.
+                            Servo motors were integrated with a Python script for basic positional control,
+                            demonstrating the bridge between mechanical design and software.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-pill">SolidWorks</span>
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Servo Control</span>
+                            <span class="tech-pill">Kinematics</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary" id="arm-github">
+                                View GitHub
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card reveal reveal-delay-3">
+                    <div class="project-image-wrapper">
+                        <img src="assets/mechatronics_project.png" alt="Mechatronics Line Follower"
+                            class="project-image"
+                            onerror="this.src='https://placehold.co/600x360/0d1220/00b4ff?text=Mechatronics'" />
+                        <div class="project-overlay"></div>
+                        <span class="project-tag">Mechatronics</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">PID Line-Following Robot</h3>
+                        <p class="project-description">
+                            A line-following robot tuned with a PID controller for smooth and accurate path tracking.
+                            Infrared sensors feed data into the control loop, and the motor drivers are managed
+                            by an Arduino Mega, with data logged to a Python dashboard.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-pill">PID Control</span>
+                            <span class="tech-pill">Arduino</span>
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">IR Sensors</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary" id="line-github">
+                                View GitHub
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Contact ────────────────────────────────── -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-heading reveal">
+                <p class="section-label">// Get in Touch</p>
+                <h2 class="section-title">Let's <span>Connect</span></h2>
+                <p class="section-description">I'm always open to collaborating on robotics projects, internships, or
+                    research opportunities.</p>
+            </div>
+            <div class="contact-grid">
+                <!-- Info -->
+                <div class="contact-info reveal">
+                    <h3>Open to Opportunities</h3>
+                    <p>Whether you want to talk robotics, collaborate on a project, or just say hi — my inbox is always
+                        open.</p>
+                    <div class="contact-links">
+                        <a href="mailto:merwan@example.com" class="contact-link" id="email-link">
+                            <div class="contact-link-icon">✉️</div>
+                            <div>
+                                <div class="contact-link-label">Email</div>
+                                <div class="contact-link-value">merwan@example.com</div>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/merwanabdela" target="_blank" rel="noopener"
+                            class="contact-link" id="linkedin-link">
+                            <div class="contact-link-icon">💼</div>
+                            <div>
+                                <div class="contact-link-label">LinkedIn</div>
+                                <div class="contact-link-value">linkedin.com/in/merwanabdela</div>
+                            </div>
+                        </a>
+                        <a href="https://github.com/merwanabdela" target="_blank" rel="noopener" class="contact-link"
+                            id="github-link">
+                            <div class="contact-link-icon">🐙</div>
+                            <div>
+                                <div class="contact-link-label">GitHub</div>
+                                <div class="contact-link-value">github.com/merwanabdela</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Form -->
+                <div class="reveal reveal-delay-2">
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="e.g. Jane Smith" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message"
+                                placeholder="Tell me about a project, opportunity, or just say hello…"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="send-message-btn"
+                            style="width:100%;justify-content:center;">
+                            Send Message
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
+                            </svg>
+                        </button>
+                        <div class="form-success" id="formSuccess">✓ Message sent! I'll get back to you soon.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Footer ─────────────────────────────────── -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo">M<span>.</span>Abdela</div>
+            <p class="footer-copy">Designed &amp; built with <span>♥</span> by Merwan Abdela &nbsp;·&nbsp; 2025</p>
+            <div class="footer-socials">
+                <a href="https://linkedin.com/in/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    id="footer-linkedin" aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    id="footer-github" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                </a>
+                <a href="mailto:merwan@example.com" class="footer-social-link" id="footer-email" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
