@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="PID Line-Following Robot – Project details by Merwan Abdela. Arduino, PID control, IR sensors, Python dashboard." />
+    <title>PID Line-Following Robot | Merwan Abdela</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- Shared design tokens -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Project-page styles -->
+    <link rel="stylesheet" href="project.css" />
+</head>
+
+<body>
+
+    <!-- ── Top Navigation ─────────────────────────── -->
+    <nav id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html#projects" class="back-link" id="back-to-projects">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                </svg>
+                Back to Projects
+            </a>
+            <a href="index.html" class="nav-logo">M<span>.</span>Abdela</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ── Hero / Title Block ─────────────────── -->
+        <section id="project-hero">
+            <div class="container">
+                <div class="project-meta reveal">
+                    <span class="project-meta-tag">Mechatronics</span>
+                    <span class="project-meta-tag">Control Systems</span>
+                    <span class="project-meta-year">2024</span>
+                </div>
+                <h1 class="project-hero-title reveal reveal-delay-1">PID Line-Following<br /><span>Robot</span></h1>
+                <p class="project-hero-summary reveal reveal-delay-2">
+                    A line-following robot tuned with a PID controller for smooth, accurate path tracking.
+                    IR sensors feed data into the control loop, managed by an Arduino Mega, with live data
+                    logged to a Python dashboard.
+                </p>
+                <div class="tech-tags reveal reveal-delay-3">
+                    <span class="tech-tag">PID Control</span>
+                    <span class="tech-tag">Arduino</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">IR Sensors</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── YouTube Video Embed ────────────────── -->
+        <section id="project-video">
+            <div class="container">
+                <div class="video-wrapper reveal">
+                    <!-- Replace the src with your real YouTube embed URL -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="PID Line-Following Robot – Demo Video"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Project Details : Two-Column ─────────── -->
+        <section id="project-details">
+            <div class="container">
+                <div class="details-grid">
+
+                    <!-- Col 1: Problem & Solution -->
+                    <div class="detail-col reveal">
+                        <div class="detail-col-label">// The Problem &amp; Solution</div>
+                        <h2 class="detail-col-title">Mechanical <span>Design</span></h2>
+                        <p>
+                            A line follower sounds simple until you try to make it fast and smooth.
+                            At high speed, a naive bang-bang controller oscillates wildly across the line.
+                            The goal was to build a robot that could maintain consistent tracking even
+                            through tight curves, using a proper closed-loop control approach.
+                        </p>
+                        <p>
+                            The chassis was designed around an array of <strong>five TCRT5000 IR sensors</strong>
+                            mounted at the front, spaced 10 mm apart to give good positional resolution over
+                            a 20 mm black line. The two rear drive motors are differential-drive, each powered
+                            by a separate channel of an L298N H-bridge, allowing independent speed control.
+                        </p>
+                        <p>
+                            The frame was 3D-printed in PLA with low-profile motor mounts to keep the
+                            sensor array close to the ground — reducing ambient light interference
+                            and improving line contrast readings.
+                        </p>
+                    </div>
+
+                    <!-- Col 2: Code & Electronics -->
+                    <div class="detail-col reveal reveal-delay-2">
+                        <div class="detail-col-label">// The Code &amp; Electronics</div>
+                        <h2 class="detail-col-title">PID <span>Controller</span></h2>
+                        <p>
+                            The <strong>Arduino Mega</strong> reads the five-sensor array every 10 ms and
+                            computes a weighted average to get a signed error value (negative = line left,
+                            positive = line right). This error drives a <strong>PID loop</strong> whose
+                            output is added to / subtracted from the base motor speed on each side.
+                        </p>
+                        <p>
+                            Tuning Kp, Ki, and Kd was done empirically on a test track. The gains were
+                            transmitted live over UART to a <strong>Python dashboard</strong> built with
+                            pyserial and matplotlib, which plotted error and motor deltas in real time —
+                            making tuning dramatically faster than reflashing firmware each iteration.
+                        </p>
+
+                        <!-- Code block -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">C++ · Arduino</span>
+                                <span class="code-file">pid_follower.ino</span>
+                            </div>
+                            <pre><code><span class="c-comment">// PID loop — runs every 10 ms</span>
+<span class="c-type">float</span> Kp = <span class="c-num">0.45</span>, Ki = <span class="c-num">0.002</span>, Kd = <span class="c-num">1.8</span>;
+<span class="c-type">float</span> integral = <span class="c-num">0</span>, lastError = <span class="c-num">0</span>;
+
+<span class="c-type">void</span> <span class="c-fn">pidLoop</span>() {
+  <span class="c-type">float</span> error  = readLineError(); <span class="c-comment">// −2..+2</span>
+  integral    += error;
+  <span class="c-type">float</span> deriv  = error - lastError;
+  <span class="c-type">float</span> output = Kp*error + Ki*integral
+                           + Kd*deriv;
+  lastError   = error;
+
+  setMotors(BASE_SPEED + output,
+            BASE_SPEED - output);
+  Serial.println(error); <span class="c-comment">// → Python</span>
+}</code></pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Challenges & Learnings ─────────────── -->
+        <section id="project-learnings">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="section-label">// Reflection</p>
+                    <h2 class="section-title">What I <span>Learned</span></h2>
+                </div>
+                <div class="learnings-grid">
+
+                    <div class="learning-card reveal reveal-delay-1">
+                        <div class="learning-icon">📊</div>
+                        <h3>PID Tuning Methodology</h3>
+                        <p>
+                            Starting with only Kp and increasing until oscillation, then adding Kd to
+                            dampen it, and finally a tiny Ki to eliminate steady-state drift — following
+                            the Ziegler–Nichols approach gave me a solid starting point and taught me
+                            why each term matters physically, not just mathematically.
+                        </p>
+                    </div>
+
+                    <div class="learning-card reveal reveal-delay-2">
+                        <div class="learning-icon">💡</div>
+                        <h3>Live Data Logging</h3>
+                        <p>
+                            Streaming sensor data over UART to a Python dashboard was a game changer.
+                            Seeing the error signal plotted live made it immediately obvious when the
+                            derivative term was too aggressive (spiky response) versus too low (sluggish
+                            recovery). I'll use real-time telemetry on every future robot project.
+                        </p>
+                    </div>
+
+                    <div class="learning-card reveal reveal-delay-3">
+                        <div class="learning-icon">⚡</div>
+                        <h3>Integral Windup</h3>
+                        <p>
+                            When the robot left the line entirely, the integral term accumulated an enormous
+                            value and caused violent overcorrection on re-acquisition. Clamping the integral
+                            to ±50 counts eliminated this and is now a rule I apply to every PID
+                            implementation from the start.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Call to Action ─────────────────────── -->
+        <section id="project-cta">
+            <div class="container">
+                <div class="cta-box reveal">
+                    <p class="cta-label">// Explore Further</p>
+                    <h2 class="cta-title">See It in Action</h2>
+                    <p class="cta-description">
+                        The full Arduino sketch, Python dashboard, and tuning notes are available on GitHub.
+                        A track-run demo is on YouTube.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary" id="cta-github">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                            </svg>
+                            View Source Code on GitHub
+                        </a>
+                        <a href="#project-video" class="btn btn-outline" id="cta-youtube">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75C14.13 2 12.64 2 12 2s-2.13 0-3.82 1.94a4.83 4.83 0 0 1-3.77 2.75C3 7.37 2 9.38 2 12s1 4.63 2.41 5.31a4.83 4.83 0 0 1 3.77 2.75C9.87 22 11.36 22 12 22s2.13 0 3.82-1.94a4.83 4.83 0 0 1 3.77-2.75C21 16.63 22 14.62 22 12s-1-4.63-2.41-5.31zM10 15.5v-7l6 3.5-6 3.5z" />
+                            </svg>
+                            Watch Full Video on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────── -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo">M<span>.</span>Abdela</div>
+            <p class="footer-copy">Designed &amp; built with <span>♥</span> by Merwan Abdela &nbsp;·&nbsp; 2025</p>
+            <div class="footer-socials">
+                <a href="https://linkedin.com/in/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                </a>
+                <a href="mailto:merwan@example.com" class="footer-social-link" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="project.js"></script>
+
+</body>
+
+</html>

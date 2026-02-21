@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="3D-Printed Wrist Exoskeleton – Full build guide by Merwan Abdela. Assembly steps, component list, STL files, electronics, and wiring." />
+    <title>Wrist Exoskeleton Build Guide | Merwan Abdela</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- Shared design tokens + project styles -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="project-guide.css" />
+</head>
+
+<body>
+
+    <!-- ── Navigation ─────────────────────────────── -->
+    <nav id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html#projects" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                </svg>
+                Back to Projects
+            </a>
+            <a href="index.html" class="nav-logo">M<span>.</span>Abdela</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ════════════════════════════════════════════
+             HERO
+        ════════════════════════════════════════════ -->
+        <section id="project-hero">
+            <div class="container">
+                <div class="project-meta reveal">
+                    <span class="project-meta-tag">Mechatronics</span>
+                    <span class="project-meta-tag">3D Printing</span>
+                    <span class="project-meta-tag">Wearable Robotics</span>
+                    <span class="project-meta-year">2025</span>
+                </div>
+                <h1 class="project-hero-title reveal reveal-delay-1">
+                    3D-Printed<br /><span>Wrist Exoskeleton</span>
+                </h1>
+                <p class="project-hero-summary reveal reveal-delay-2">
+                    A lightweight, fully 3D-printable wrist-assist exoskeleton designed to support flexion
+                    and extension movements. Driven by a single servo, guided by flex sensors,
+                    and controlled by an Arduino Nano — this is a complete build guide covering
+                    every component, print setting, and assembly step.
+                </p>
+                <div class="tech-tags reveal reveal-delay-3">
+                    <span class="tech-tag">SolidWorks</span>
+                    <span class="tech-tag">FDM Printing</span>
+                    <span class="tech-tag">Arduino C++</span>
+                    <span class="tech-tag">Servo Control</span>
+                    <span class="tech-tag">Flex Sensors</span>
+                    <span class="tech-tag">Wearable</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero image full-width -->
+        <div class="guide-hero-image reveal">
+            <img src="assets/exo_hero.png" alt="3D-Printed Wrist Exoskeleton – finished assembly" />
+            <div class="guide-hero-overlay">
+                <span class="guide-hero-label">// Finished Assembly</span>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════
+             PROJECT OVERVIEW – QUICK STATS
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-surface">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Project Overview</span>
+                    <h2 class="section-title">What Is <span>This Build?</span></h2>
+                </div>
+                <div class="overview-grid">
+                    <div class="overview-text reveal">
+                        <p>
+                            The <strong>EXO-W1</strong> (Wrist Exoskeleton, Version 1) is a research-grade wearable
+                            device that assists the natural wrist flexion–extension range of motion.
+                            It was designed as a <strong>mechatronics capstone project</strong> and as a
+                            platform to learn about biomechanical mechanism design, embedded sensing,
+                            and closed-loop actuator control — all in a single, wearable package.
+                        </p>
+                        <p>
+                            The entire structural frame is <strong>3D-printable</strong> in PLA or PETG.
+                            It uses a single <strong>MG996R metal-gear servo</strong> as the prime actuator,
+                            a <strong>flex sensor glued to a glove liner</strong> as the intent-detection input,
+                            and an <strong>Arduino Nano</strong> as the brain. Total BOM cost comes in under €60.
+                        </p>
+                        <p>
+                            This guide walks through every step: the parts you need, how to print them,
+                            how to assemble the mechanical structure, and how to wire and flash the electronics.
+                        </p>
+                    </div>
+                    <div class="stats-panel reveal reveal-delay-2">
+                        <div class="stat-row">
+                            <span class="stat-row-label">Print Time</span>
+                            <span class="stat-row-value">~14 hours</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">Assembly Time</span>
+                            <span class="stat-row-value">2–3 hours</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">Total Cost</span>
+                            <span class="stat-row-value">~€55–65</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">Assist Force</span>
+                            <span class="stat-row-value">~1.2 kg·cm</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">ROM Covered</span>
+                            <span class="stat-row-value">0° – 70° Flex</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">Weight</span>
+                            <span class="stat-row-value">210 g</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-row-label">Power Supply</span>
+                            <span class="stat-row-value">5V – 2A USB</span>
+                        </div>
+                        <div class="stat-row last">
+                            <span class="stat-row-label">Skill Level</span>
+                            <span class="stat-row-value highlight">Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             PRINT SETTINGS
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-bg">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Print Settings</span>
+                    <h2 class="section-title">STL Files &amp; <span>Print Configuration</span></h2>
+                    <p class="section-description">All structural parts should be printed with the following settings
+                        for adequate strength and dimensional accuracy.</p>
+                </div>
+
+                <div class="print-grid">
+                    <!-- Recommended -->
+                    <div class="print-card reveal reveal-delay-1">
+                        <div class="print-card-header">
+                            <span class="print-card-icon">⚙️</span>
+                            <h3>Recommended Settings</h3>
+                        </div>
+                        <table class="spec-table">
+                            <tr>
+                                <td>Material</td>
+                                <td><strong>PETG</strong> (preferred) or PLA+</td>
+                            </tr>
+                            <tr>
+                                <td>Layer Height</td>
+                                <td><strong>0.2 mm</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Infill</td>
+                                <td><strong>35%</strong> Gyroid</td>
+                            </tr>
+                            <tr>
+                                <td>Perimeters</td>
+                                <td><strong>4 walls</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Support</td>
+                                <td>Tree supports, PLA interface</td>
+                            </tr>
+                            <tr>
+                                <td>Bed Adhesion</td>
+                                <td>Brim — 5 mm</td>
+                            </tr>
+                            <tr>
+                                <td>Nozzle Temp</td>
+                                <td>240°C (PETG) / 215°C (PLA)</td>
+                            </tr>
+                            <tr>
+                                <td>Bed Temp</td>
+                                <td>80°C (PETG) / 60°C (PLA)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- STL parts list -->
+                    <div class="print-card reveal reveal-delay-2">
+                        <div class="print-card-header">
+                            <span class="print-card-icon">🖨️</span>
+                            <h3>Parts to Print</h3>
+                        </div>
+                        <ul class="parts-list">
+                            <li><span class="part-qty">×1</span><span
+                                    class="part-name">EXO-W1_Forearm_Shell_L</span><span class="part-note">No
+                                    supports</span></li>
+                            <li><span class="part-qty">×1</span><span
+                                    class="part-name">EXO-W1_Forearm_Shell_R</span><span class="part-note">No
+                                    supports</span></li>
+                            <li><span class="part-qty">×1</span><span class="part-name">EXO-W1_Servo_Mount</span><span
+                                    class="part-note">Tree supports</span></li>
+                            <li><span class="part-qty">×1</span><span class="part-name">EXO-W1_Wrist_Pivot_A</span><span
+                                    class="part-note">No supports</span></li>
+                            <li><span class="part-qty">×1</span><span class="part-name">EXO-W1_Wrist_Pivot_B</span><span
+                                    class="part-note">No supports</span></li>
+                            <li><span class="part-qty">×1</span><span
+                                    class="part-name">EXO-W1_Hand_Dorsum_Plate</span><span class="part-note">Tree
+                                    supports</span></li>
+                            <li><span class="part-qty">×2</span><span
+                                    class="part-name">EXO-W1_Finger_Guide_Rail</span><span class="part-note">No
+                                    supports</span></li>
+                            <li><span class="part-qty">×1</span><span
+                                    class="part-name">EXO-W1_Electronics_Bay_Cover</span><span
+                                    class="part-note">Brim</span></li>
+                            <li><span class="part-qty">×4</span><span class="part-name">EXO-W1_Strap_Buckle</span><span
+                                    class="part-note">Flat-print</span></li>
+                        </ul>
+                    </div>
+                    <!-- Tips -->
+                    <div class="print-card print-card-wide reveal reveal-delay-3">
+                        <div class="print-card-header">
+                            <span class="print-card-icon">💡</span>
+                            <h3>Important Print Notes</h3>
+                        </div>
+                        <div class="tips-grid">
+                            <div class="tip-item">
+                                <span class="tip-title">Tolerance Holes</span>
+                                <p>All bearing seats and servo-horn holes are modelled at nominal size. If your printer
+                                    runs tight, ream M3 holes with a 3 mm drill bit after printing. Do not heat-force
+                                    the servo horn or you will crack the pivot.</p>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-title">PETG vs PLA</span>
+                                <p>PETG is strongly preferred for the pivot and servo mount parts — it handles repeated
+                                    mechanical stress and moderate heat far better than standard PLA, which can creep
+                                    over time near the servo body.</p>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-title">Bed Orientation</span>
+                                <p>Print the Forearm Shells standing vertically (along the long axis) so layer lines run
+                                    parallel to the strap load direction. This gives the best tensile strength across
+                                    the shell walls.</p>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-title">Post-Processing</span>
+                                <p>Sand all bearing seats lightly with 400-grit. Apply a thin coat of super glue to nut
+                                    pockets before pressing nuts in — this prevents them from spinning when you tighten
+                                    bolts from the other side.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             COMPONENTS & PRODUCTS
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-surface">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Bill of Materials</span>
+                    <h2 class="section-title">Components &amp; <span>Products</span></h2>
+                    <p class="section-description">Everything you need to build a complete EXO-W1. Quantities are per
+                        one unit.</p>
+                </div>
+
+                <!-- Image -->
+                <div class="bom-image reveal">
+                    <img src="assets/exo_components.png" alt="All EXO-W1 components laid out flat" />
+                    <p class="image-caption">All components before assembly — sorted and ready.</p>
+                </div>
+
+                <!-- Hardware fasteners -->
+                <div class="bom-category reveal">
+                    <div class="bom-category-header">
+                        <span class="bom-icon">🔩</span>
+                        <h3>Hardware &amp; Fasteners</h3>
+                    </div>
+                    <div class="bom-table-wrapper">
+                        <table class="bom-table">
+                            <thead>
+                                <tr>
+                                    <th>Qty</th>
+                                    <th>Item</th>
+                                    <th>Spec</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>×18</td>
+                                    <td>Socket-head cap screw</td>
+                                    <td>M3 × 8 mm</td>
+                                    <td>Shell side panels</td>
+                                </tr>
+                                <tr>
+                                    <td>×12</td>
+                                    <td>Socket-head cap screw</td>
+                                    <td>M3 × 12 mm</td>
+                                    <td>Servo mount &amp; pivots</td>
+                                </tr>
+                                <tr>
+                                    <td>×6</td>
+                                    <td>Socket-head cap screw</td>
+                                    <td>M3 × 16 mm</td>
+                                    <td>Wrist pivot axle</td>
+                                </tr>
+                                <tr>
+                                    <td>×4</td>
+                                    <td>Socket-head cap screw</td>
+                                    <td>M3 × 20 mm</td>
+                                    <td>Electronics bay</td>
+                                </tr>
+                                <tr>
+                                    <td>×24</td>
+                                    <td>M3 hex nut</td>
+                                    <td>Standard</td>
+                                    <td>Press into nut pockets</td>
+                                </tr>
+                                <tr>
+                                    <td>×8</td>
+                                    <td>M3 nylon lock nut</td>
+                                    <td>Nyloc</td>
+                                    <td>Moving pivot joints</td>
+                                </tr>
+                                <tr>
+                                    <td>×4</td>
+                                    <td>Radial bearing</td>
+                                    <td>MR83 (3×8×3 mm)</td>
+                                    <td>Wrist pivot</td>
+                                </tr>
+                                <tr>
+                                    <td>×2</td>
+                                    <td>Radial bearing</td>
+                                    <td>605ZZ (5×14×5 mm)</td>
+                                    <td>Forearm shell pivots</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Electronics -->
+                <div class="bom-category reveal">
+                    <div class="bom-category-header">
+                        <span class="bom-icon">⚡</span>
+                        <h3>Electronics</h3>
+                    </div>
+                    <div class="product-cards-grid">
+                        <div class="product-card">
+                            <div class="product-card-tag">Microcontroller</div>
+                            <div class="product-card-name">Arduino Nano (V3)</div>
+                            <div class="product-card-spec">ATmega328P · 5V · 32 KB Flash</div>
+                            <p class="product-card-desc">The compact size makes it ideal for fitting inside the
+                                electronics bay. Any Nano-compatible clone works fine. Solder header pins before
+                                installing.</p>
+                            <div class="product-card-meta">
+                                <span class="product-price">~€5–12</span>
+                                <a href="#" class="product-link">Buy on Amazon ↗</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-card-tag">Actuator</div>
+                            <div class="product-card-name">MG996R Servo (Metal Gear)</div>
+                            <div class="product-card-spec">Torque: 9.4 kg·cm · 4.8–7.2V · PWM</div>
+                            <p class="product-card-desc">Metal gears are mandatory here — plastic gears will strip under
+                                repeated load cycles. The MG996R's torque is more than sufficient for wrist-assist at
+                                this scale.</p>
+                            <div class="product-card-meta">
+                                <span class="product-price">~€8–14</span>
+                                <a href="#" class="product-link">Buy on Amazon ↗</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-card-tag">Sensor</div>
+                            <div class="product-card-name">Flex Sensor 2.2"</div>
+                            <div class="product-card-spec">Resistance: 25 kΩ flat → 125 kΩ bent</div>
+                            <p class="product-card-desc">Taped to the back of a thin glove liner over the wrist joint.
+                                Wired as a voltage divider with a 47 kΩ resistor into the Arduino ADC.</p>
+                            <div class="product-card-meta">
+                                <span class="product-price">~€10–15</span>
+                                <a href="#" class="product-link">Buy on Adafruit ↗</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-card-tag">Power</div>
+                            <div class="product-card-name">USB Power Bank (5V · 2A)</div>
+                            <div class="product-card-spec">Capacity: 5000 mAh recommended</div>
+                            <p class="product-card-desc">Powers the Arduino and servo directly. The Nano's 5V rail can
+                                pass through to the servo — 2A peak is sufficient for MG996R at this load. Mount to
+                                forearm strap with velcro.</p>
+                            <div class="product-card-meta">
+                                <span class="product-price">~€12–18</span>
+                                <a href="#" class="product-link">Buy on Amazon ↗</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-card-tag">Misc</div>
+                            <div class="product-card-name">Breadboard + Jumper Wires</div>
+                            <div class="product-card-spec">Half-size breadboard · 40-piece dupont kit</div>
+                            <p class="product-card-desc">Used for prototype wiring before soldering. Final build should
+                                use a custom perfboard layout to reduce bulk inside the electronics bay cover.</p>
+                            <div class="product-card-meta">
+                                <span class="product-price">~€5</span>
+                                <a href="#" class="product-link">Buy on AliExpress ↗</a>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-card-tag">Misc</div>
+                            <div class="product-card-name">Velcro Straps (25 mm wide)</div>
+                            <div class="product-card-spec">Hook-and-loop · 50 cm minimum length</div>
+                            <p class="product-card-desc">Three straps secure the forearm shell to the arm. Thread
+                                through the printed buckles and trim to fit. Medical-grade velcro is more comfortable
+                                for extended wear.</p>
+                            <div class="product-card-meta">
+                                <span class="product-price">~€4</span>
+                                <a href="#" class="product-link">Buy on Amazon ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="bom-category reveal">
+                    <div class="bom-category-header">
+                        <span class="bom-icon">🔧</span>
+                        <h3>Tools Needed</h3>
+                    </div>
+                    <div class="tools-grid">
+                        <div class="tool-item"><span>Allen key set (M3)</span></div>
+                        <div class="tool-item"><span>Needle-nose pliers</span></div>
+                        <div class="tool-item"><span>Soldering iron + solder</span></div>
+                        <div class="tool-item"><span>Heat-shrink tubing</span></div>
+                        <div class="tool-item"><span>3 mm drill bit + hand drill</span></div>
+                        <div class="tool-item"><span>Super glue (CA glue)</span></div>
+                        <div class="tool-item"><span>Multimeter</span></div>
+                        <div class="tool-item"><span>Sand paper (400-grit)</span></div>
+                        <div class="tool-item"><span>USB-A to Mini-B cable</span></div>
+                        <div class="tool-item"><span>Tape measure / calipers</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             EXPLODED VIEW
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-bg">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Mechanical Overview</span>
+                    <h2 class="section-title">Exploded <span>Assembly View</span></h2>
+                </div>
+                <div class="exploded-wrapper reveal">
+                    <img src="assets/exo_exploded.png" alt="Exploded view of EXO-W1 assembly" />
+                </div>
+                <div class="sub-assembly-grid">
+                    <div class="sub-item reveal reveal-delay-1">
+                        <span class="sub-number">A</span>
+                        <div>
+                            <strong>Forearm Shell (L + R)</strong>
+                            <p>Two-piece clamshell that wraps the forearm. Houses the servo and electronics bay. Closed
+                                with M3 × 8 screws.</p>
+                        </div>
+                    </div>
+                    <div class="sub-item reveal reveal-delay-2">
+                        <span class="sub-number">B</span>
+                        <div>
+                            <strong>Wrist Pivot Assembly</strong>
+                            <p>Two pivot halves joined by an M3 × 16 axle bolt with MR83 bearings on each side. This is
+                                the main rotation joint — the servo horn attaches here.</p>
+                        </div>
+                    </div>
+                    <div class="sub-item reveal reveal-delay-3">
+                        <span class="sub-number">C</span>
+                        <div>
+                            <strong>Hand Dorsum Plate</strong>
+                            <p>Sits over the back of the hand, attached to the wrist pivot. The two finger guide rails
+                                press-fit into slots on this plate and provide gentle support without restricting finger
+                                motion.</p>
+                        </div>
+                    </div>
+                    <div class="sub-item reveal reveal-delay-1">
+                        <span class="sub-number">D</span>
+                        <div>
+                            <strong>Servo Mount Block</strong>
+                            <p>Bolted to the inside of the right forearm shell with M3 × 12 screws. The MG996R sits
+                                flush and is secured with the servo's own M3 mounting tabs.</p>
+                        </div>
+                    </div>
+                    <div class="sub-item reveal reveal-delay-2">
+                        <span class="sub-number">E</span>
+                        <div>
+                            <strong>Electronics Bay</strong>
+                            <p>Recessed cavity in the left forearm shell. The Arduino Nano and voltage divider circuit
+                                sit on a half-size breadboard held with double-sided foam tape. Covered by the bay-cover
+                                print.</p>
+                        </div>
+                    </div>
+                    <div class="sub-item reveal reveal-delay-3">
+                        <span class="sub-number">F</span>
+                        <div>
+                            <strong>Strap Buckles (×4)</strong>
+                            <p>Printed flat in PLA. Three straps thread through them and fold back on themselves with
+                                velcro. Buckles are glued to the underside of the forearm shell with CA glue.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             STEP-BY-STEP ASSEMBLY
+        ════════════════════════════════════════════ -->
+        <section class="guide-section bg-surface">
+            <div class="container">
+                <div class="guide-section-header reveal">
+                    <span class="section-label">// Build Guide</span>
+                    <h2 class="section-title">Step-by-Step <span>Assembly</span></h2>
+                    <p class="section-description">Follow each step in order. Do not skip ahead — some steps install
+                        parts that become inaccessible later.</p>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">01</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Wrist Pivot Assembly</div>
+                        <h3 class="step-title">Assemble the Wrist Joint</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> 2× MR83 bearings · 2× EXO-W1_Wrist_Pivot_A/B · 2× M3 × 16 mm · 2× M3
+                            nyloc nut
+                        </div>
+                        <ol class="step-instructions">
+                            <li>Press one <strong>MR83 bearing</strong> into the bearing seat on Pivot_A. The fit should
+                                be snug — use a flat surface and press gently with your thumb, or tap carefully with a
+                                mallet and a 3 mm dowel.</li>
+                            <li>Press the second MR83 bearing into Pivot_B in the same manner.</li>
+                            <li>Align Pivot_A and Pivot_B — the axle hole centres must be co-linear. If they're not
+                                twisting freely, check that both bearing seats are fully seated (bearings should sit
+                                flush, not proud).</li>
+                            <li>Insert an M3 × 16 bolt through the axle hole from the A side. Thread on a nyloc nut on
+                                the B side. Tighten until there is <em>no play</em> but the joint rotates freely. This
+                                is the main wrist joint.</li>
+                            <li>Repeat for the second axle position (the finger-guide rail attachment point).</li>
+                        </ol>
+                        <div class="step-note">
+                            <span class="step-note-icon">⚠️</span>
+                            <p><strong>Important:</strong> Do NOT over-tighten the nyloc nuts. The joint must rotate
+                                freely under servo power. If it feels stiff, back the nut off a quarter-turn at a time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">02</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Servo Sub-Assembly</div>
+                        <h3 class="step-title">Mount the Servo to its Block</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> 1× MG996R servo · 1× EXO-W1_Servo_Mount · 4× M3 × 12 mm · 4× M3 hex
+                            nut
+                        </div>
+                        <ol class="step-instructions">
+                            <li>Press M3 hex nuts into the four nut pockets on the Servo_Mount block. If they feel
+                                loose, add a drop of CA glue and let it cure for 2 minutes before continuing.</li>
+                            <li>Slide the MG996R into the mount cavity. The servo output shaft should protrude through
+                                the shaft slot and face upward (toward the wrist pivot).</li>
+                            <li>Secure the servo with 4× M3 × 12 bolts through the servo's mounting tabs into the nut
+                                pockets. Tighten evenly in a cross pattern — do not over-tighten or you'll crack the
+                                servo casing tabs.</li>
+                            <li>Attach the servo horn from the MG996R kit to the output shaft. Use the shortest circular
+                                horn (disc horn). The centre-lock screw holds it to the shaft; tighten firmly.</li>
+                        </ol>
+                        <div class="step-note tip">
+                            <span class="step-note-icon">💡</span>
+                            <p><strong>Tip:</strong> Before mounting the servo horn, connect the servo to your Arduino
+                                and centre it by sending a 90° signal. This ensures the horn is attached at the
+                                mechanical midpoint, giving equal range in both directions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">03</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Right Forearm Shell</div>
+                        <h3 class="step-title">Install Servo Mount into Shell (Right)</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> Servo sub-assembly from Step 2 · EXO-W1_Forearm_Shell_R · 4× M3 × 12
+                            mm
+                        </div>
+                        <ol class="step-instructions">
+                            <li>Orient the right forearm shell with the interior cavity facing up. Locate the four
+                                mounting pillar holes for the servo mount block — they are on the inner lower wall, with
+                                a slot cut for the servo cable to exit.</li>
+                            <li>Feed the servo cable through the cable exit slot first, then lower the servo mount block
+                                into position. The servo output shaft should align with the wrist pivot slot opening at
+                                the top of the shell.</li>
+                            <li>Fasten with 4× M3 × 12 mm screws into the shell's pillars. Tighten until the mount does
+                                not rock — if it does, add a thin shim of electrical tape to the contact surfaces before
+                                tightening.</li>
+                            <li>Pull several centimetres of slack cable into the electronics bay cavity side so there is
+                                enough length for later connections.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">04</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Wrist Linkage</div>
+                        <h3 class="step-title">Connect the Wrist Pivot to the Servo Horn</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> Wrist pivot assembly from Step 1 · 2× 605ZZ bearing · 2× M3 × 16 mm
+                            · 2× M3 hex nut
+                        </div>
+                        <ol class="step-instructions">
+                            <li>Press the two 605ZZ bearings into the forearm shell's wrist pivot bearing seats — one on
+                                each side wall of the shell opening at the top.</li>
+                            <li>Slot the wrist pivot assembly between the two bearing seats. The pivot axle should pass
+                                through both bearings. It will require light pressure — push from both sides
+                                simultaneously to keep it aligned.</li>
+                            <li>Locate the servo horn connection point on Pivot_A — it has a slot and a single M3 hole.
+                                Align this with the hole in the servo disc horn.</li>
+                            <li>Use an M3 × 16 mm bolt to pin the servo horn to the pivot arm. Add an M3 hex nut on the
+                                inside and tighten. There should be no gap — if there is, the pivot will backlash. Use a
+                                washer if needed.</li>
+                        </ol>
+                        <div class="step-note">
+                            <span class="step-note-icon">⚠️</span>
+                            <p><strong>Critical:</strong> Before closing the shell, manually rotate the servo through
+                                its full range and confirm the wrist pivot rotates smoothly from 0° to 70° without
+                                binding. If it catches, the servo horn and pivot are misaligned — re-check the horn
+                                bolt.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">05</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Electronics</div>
+                        <h3 class="step-title">Wire the Electronics</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> Arduino Nano · Flex sensor · 47 kΩ resistor · breadboard · jumper
+                            wires · heat shrink
+                        </div>
+                        <ol class="step-instructions">
+                            <li>Place the Arduino Nano on the half-size breadboard. The Nano's USB port should face the
+                                bay opening so you can reflash without disassembly.</li>
+                            <li>Build the flex sensor voltage divider: connect one end of the flex sensor to 5V, the
+                                other end to a node shared with a 47 kΩ resistor to GND. The shared node connects to
+                                Arduino <code>A0</code>. This gives ~2.5V at neutral and ~4.0V fully flexed.</li>
+                            <li>Connect the MG996R servo cable: <span class="wire-brown">Brown → GND</span>, <span
+                                    class="wire-red">Red → 5V (Nano VIN)</span>, <span class="wire-orange">Orange →
+                                    Arduino D9 (PWM)</span>.</li>
+                            <li>Apply heat-shrink to all bare solder joints. Route cables inside the shell so no wire
+                                crosses the wrist pivot path.</li>
+                            <li>Seat the breadboard in the electronics bay cavity and secure with double-sided foam
+                                tape. The bay board should sit below the shell rim so the cover fits flush.</li>
+                        </ol>
+                        <div class="code-block" style="margin-top:28px;">
+                            <div class="code-header">
+                                <span class="code-lang">C++ · Arduino</span>
+                                <span class="code-file">exo_w1_control.ino</span>
+                            </div>
+                            <pre><code><span class="c-comment">// EXO-W1 Wrist Exoskeleton Controller</span>
+#include &lt;Servo.h&gt;
+
+Servo wrist;
+<span class="c-kw">const</span> <span class="c-type">int</span> FLEX_PIN  = A0;
+<span class="c-kw">const</span> <span class="c-type">int</span> SERVO_PIN = <span class="c-num">9</span>;
+<span class="c-kw">const</span> <span class="c-type">int</span> DEADBAND  = <span class="c-num">20</span>;  <span class="c-comment">// ADC counts</span>
+
+<span class="c-type">void</span> <span class="c-fn">setup</span>() {
+  wrist.attach(SERVO_PIN);
+  wrist.write(<span class="c-num">90</span>);  <span class="c-comment">// neutral on boot</span>
+  Serial.begin(<span class="c-num">9600</span>);
+}
+
+<span class="c-type">void</span> <span class="c-fn">loop</span>() {
+  <span class="c-type">int</span> raw  = analogRead(FLEX_PIN);
+  <span class="c-type">int</span> angle = map(raw, <span class="c-num">400</span>, <span class="c-num">800</span>, <span class="c-num">90</span>, <span class="c-num">160</span>);
+  angle = constrain(angle, <span class="c-num">90</span>, <span class="c-num">160</span>);
+
+  wrist.write(angle);
+  Serial.println(angle);
+  delay(<span class="c-num">20</span>);
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">06</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Hand Plate &amp; Rails</div>
+                        <h3 class="step-title">Attach the Hand Dorsum Plate &amp; Finger Rails</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> EXO-W1_Hand_Dorsum_Plate · 2× EXO-W1_Finger_Guide_Rail · 2× M3 × 12
+                            mm · 2× M3 hex nut
+                        </div>
+                        <ol class="step-instructions">
+                            <li>Align the Hand Dorsum Plate with its two mounting tabs over the Pivot_B holes. The plate
+                                should lay flat over the dorsum (back of hand) when the wrist is at 0° (neutral).</li>
+                            <li>Fasten with 2× M3 × 12 mm bolts and hex nuts — hand tighten only so the plate can still
+                                flex slightly to conform to wrist shape. You will lock these down fully after fitting to
+                                the user.</li>
+                            <li>Press-fit the two Finger Guide Rails into the slots on the Hand Dorsum Plate. They
+                                should snap in firmly. If loose, add a drop of CA glue along the press-fit edge. Let it
+                                cure before continuing.</li>
+                        </ol>
+                        <div class="step-note tip">
+                            <span class="step-note-icon">💡</span>
+                            <p><strong>Tip:</strong> The finger rails are universal-length and can be trimmed with a
+                                hobby knife if they extend past the user's finger knuckles. Trim in 5 mm increments and
+                                check fit before cutting more.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="step-block reveal">
+                    <div class="step-number-col">
+                        <div class="step-number">07</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Shell Closure &amp; Straps</div>
+                        <h3 class="step-title">Close the Shell and Install Straps</h3>
+                        <div class="step-parts">
+                            <strong>Parts:</strong> EXO-W1_Forearm_Shell_L · EXO-W1_Electronics_Bay_Cover · 4×
+                            EXO-W1_Strap_Buckle · 18× M3 × 8 mm · 3× velcro strap (25 mm × ~22 cm)
+                        </div>
+                        <ol class="step-instructions">
+                            <li>Align the left forearm shell with the right, checking that the wrist cable and
+                                electronics are fully inside the cavity. Press the two halves together — there should be
+                                no gap along the entire perimeter.</li>
+                            <li>Insert and tighten all 18× M3 × 8 mm clamshell screws. Work in a star pattern to close
+                                the gap evenly without warping the print.</li>
+                            <li>Snap the electronics bay cover onto the bay opening and secure with 4× M3 × 20 mm
+                                screws.</li>
+                            <li>Glue the four strap buckles to the underside of the forearm shell with CA glue — two
+                                near the distal end and two near the proximal end. Let cure for 5 minutes.</li>
+                            <li>Thread each velcro strap through its pair of buckles. The straps should be tight enough
+                                that the device does not slide when the wrist moves but comfortable enough to wear for
+                                30+ minutes.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Final Step -->
+                <div class="step-block last-step reveal">
+                    <div class="step-number-col">
+                        <div class="step-number finish">✓</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-tag">Complete</div>
+                        <h3 class="step-title">Flash Firmware &amp; Calibrate</h3>
+                        <ol class="step-instructions">
+                            <li>Connect the Arduino Nano via USB and upload <code>exo_w1_control.ino</code> using the
+                                Arduino IDE (Board: Arduino Nano, Processor: ATmega328P).</li>
+                            <li>Open the Serial Monitor (9600 baud). With the flex sensor straight, note the raw ADC
+                                value — this is your flat baseline. Record the value when bending your wrist fully —
+                                this is the max reading.</li>
+                            <li>Edit the <code>map(raw, 400, 800, 90, 160)</code> line to reflect your actual flat and
+                                bent readings. Re-upload.</li>
+                            <li>Power via USB power bank. The device should now respond proportionally to wrist flex
+                                intent detected through the glove sensor.</li>
+                        </ol>
+                        <div class="step-note tip">
+                            <span class="step-note-icon">🎉</span>
+                            <p><strong>Congratulations!</strong> Your EXO-W1 is complete. If the servo twitches at
+                                neutral, widen the deadband constant in firmware. If response feels lagged, reduce the
+                                <code>delay(20)</code> to <code>delay(10)</code>.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             LEARNINGS (same as other project pages)
+        ════════════════════════════════════════════ -->
+        <section id="project-learnings">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="section-label">// Reflection</p>
+                    <h2 class="section-title">What I <span>Learned</span></h2>
+                </div>
+                <div class="learnings-grid">
+                    <div class="learning-card reveal reveal-delay-1">
+                        <div class="learning-icon">🦴</div>
+                        <h3>Biomechanics Matters</h3>
+                        <p>Designing around a human joint is completely different from designing a robot joint. Skin
+                            compresses, wrist anatomy varies person-to-person, and the axis of rotation shifts as you
+                            flex. Version 1 had a fixed pivot axis that caused the device to slip up the forearm — a
+                            problem that required studying actual wrist biomechanics to solve properly.</p>
+                    </div>
+                    <div class="learning-card reveal reveal-delay-2">
+                        <div class="learning-icon">📐</div>
+                        <h3>Iterative Fit Testing</h3>
+                        <p>I printed 11 iterations of the forearm shell before getting a comfortable fit. Key learnings:
+                            measure the wrist circumference at three points, add at least 4 mm of padding clearance in
+                            the CAD, and always test-fit the print dry before adding electronics — you'll need to
+                            disassemble it many times.</p>
+                    </div>
+                    <div class="learning-card reveal reveal-delay-3">
+                        <div class="learning-icon">🧠</div>
+                        <h3>Intent Detection is Hard</h3>
+                        <p>A single flex sensor is a crude input — it can't distinguish between voluntary movement and
+                            passive loading. Future versions will use EMG (muscle electrical signals) for true intent
+                            detection. This project made me appreciate how much signal processing goes into commercial
+                            exoskeleton products.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════
+             CTA
+        ════════════════════════════════════════════ -->
+        <section id="project-cta">
+            <div class="container">
+                <div class="cta-box reveal">
+                    <p class="cta-label">// Open Source</p>
+                    <h2 class="cta-title">Get the Files</h2>
+                    <p class="cta-description">
+                        All STL files, the Arduino firmware, and the SolidWorks source files are
+                        available on GitHub under the MIT licence.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary" id="exo-github">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                            </svg>
+                            Download STL + Source on GitHub
+                        </a>
+                        <a href="#project-video" class="btn btn-outline" id="exo-youtube">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75C14.13 2 12.64 2 12 2s-2.13 0-3.82 1.94a4.83 4.83 0 0 1-3.77 2.75C3 7.37 2 9.38 2 12s1 4.63 2.41 5.31a4.83 4.83 0 0 1 3.77 2.75C9.87 22 11.36 22 12 22s2.13 0 3.82-1.94a4.83 4.83 0 0 1 3.77-2.75C21 16.63 22 14.62 22 12s-1-4.63-2.41-5.31zM10 15.5v-7l6 3.5-6 3.5z" />
+                            </svg>
+                            Watch Build Video on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────── -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo">M<span>.</span>Abdela</div>
+            <p class="footer-copy">Designed &amp; built with <span>♥</span> by Merwan Abdela &nbsp;·&nbsp; 2025</p>
+            <div class="footer-socials">
+                <a href="https://linkedin.com/in/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                </a>
+                <a href="mailto:merwan@example.com" class="footer-social-link" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="project.js"></script>
+
+</body>
+
+</html>

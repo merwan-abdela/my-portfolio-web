@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Custom CAD Robotic Arm – Project details by Merwan Abdela. SolidWorks, Python servo control, 4-DOF kinematics." />
+    <title>Custom CAD Robotic Arm | Merwan Abdela</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- Shared design tokens -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Project-page styles -->
+    <link rel="stylesheet" href="project.css" />
+</head>
+
+<body>
+
+    <!-- ── Top Navigation ─────────────────────────── -->
+    <nav id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html#projects" class="back-link" id="back-to-projects">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                </svg>
+                Back to Projects
+            </a>
+            <a href="index.html" class="nav-logo">M<span>.</span>Abdela</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ── Hero / Title Block ─────────────────── -->
+        <section id="project-hero">
+            <div class="container">
+                <div class="project-meta reveal">
+                    <span class="project-meta-tag">CAD / Mechanical</span>
+                    <span class="project-meta-tag">Software</span>
+                    <span class="project-meta-year">2024</span>
+                </div>
+                <h1 class="project-hero-title reveal reveal-delay-1">Custom CAD<br /><span>Robotic Arm</span></h1>
+                <p class="project-hero-summary reveal reveal-delay-2">
+                    A 4-DOF robotic arm fully designed in SolidWorks with motion simulation. Servo motors are
+                    controlled via a Python script, demonstrating the bridge between mechanical design and software.
+                </p>
+                <div class="tech-tags reveal reveal-delay-3">
+                    <span class="tech-tag">SolidWorks</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Servo Control</span>
+                    <span class="tech-tag">Kinematics</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── YouTube Video Embed ────────────────── -->
+        <section id="project-video">
+            <div class="container">
+                <div class="video-wrapper reveal">
+                    <!-- Replace the src with your real YouTube embed URL -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Custom CAD Robotic Arm – Demo Video"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Project Details : Two-Column ─────────── -->
+        <section id="project-details">
+            <div class="container">
+                <div class="details-grid">
+
+                    <!-- Col 1: Problem & Solution -->
+                    <div class="detail-col reveal">
+                        <div class="detail-col-label">// The Problem &amp; Solution</div>
+                        <h2 class="detail-col-title">Mechanical <span>Design</span></h2>
+                        <p>
+                            Robotic arms are a cornerstone of industrial automation, but off-the-shelf kits offer
+                            little insight into the engineering behind them. I wanted to design every component
+                            from scratch — understanding each joint, link length, and torque requirement before
+                            a single part was printed.
+                        </p>
+                        <p>
+                            Using <strong>SolidWorks</strong>, I built a fully parametric 4-DOF arm assembly.
+                            Each joint was sized to the rated stall torque of the chosen MG996R servo, and I ran
+                            a basic static analysis to confirm the shoulder joint bracket wouldn't yield under
+                            full extension with a 150 g payload.
+                        </p>
+                        <p>
+                            The final arm spans 480 mm when fully extended, weighs 620 g, and uses a
+                            direct-drive wrist with a 3-finger gripper — also designed in SolidWorks
+                            and printed in PETG for its improved layer adhesion.
+                        </p>
+                    </div>
+
+                    <!-- Col 2: Code & Electronics -->
+                    <div class="detail-col reveal reveal-delay-2">
+                        <div class="detail-col-label">// The Code &amp; Electronics</div>
+                        <h2 class="detail-col-title">Software &amp; <span>Control</span></h2>
+                        <p>
+                            Four <strong>MG996R servos</strong> are driven by a PCA9685 16-channel PWM board
+                            connected to a Raspberry Pi over I²C. A <strong>Python</strong> script translates
+                            target joint angles into PWM duty cycles and sends them in a synchronised update
+                            so all joints move together smoothly.
+                        </p>
+                        <p>
+                            Forward kinematics were implemented to visualise the end-effector position in
+                            real time via a simple matplotlib overlay, useful for debugging reach limits
+                            before running the physical arm.
+                        </p>
+
+                        <!-- Code block -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Python</span>
+                                <span class="code-file">arm_control.py</span>
+                            </div>
+                            <pre><code><span class="c-comment"># Set joint angle (degrees) → PWM pulse</span>
+<span class="c-kw">def</span> <span class="c-fn">set_angle</span>(channel, angle):
+    angle = max(<span class="c-num">0</span>, min(<span class="c-num">180</span>, angle))
+    pulse = int(
+        SERVO_MIN + (angle / <span class="c-num">180</span>) *
+        (SERVO_MAX - SERVO_MIN)
+    )
+    pwm.set_pwm(channel, <span class="c-num">0</span>, pulse)
+
+<span class="c-comment"># Move all joints simultaneously</span>
+<span class="c-kw">def</span> <span class="c-fn">move_to</span>(angles: list):
+    <span class="c-kw">for</span> ch, ang <span class="c-kw">in</span> enumerate(angles):
+        set_angle(ch, ang)
+    time.sleep(<span class="c-num">0.02</span>)  <span class="c-comment"># 20 ms settle</span></code></pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Challenges & Learnings ─────────────── -->
+        <section id="project-learnings">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="section-label">// Reflection</p>
+                    <h2 class="section-title">What I <span>Learned</span></h2>
+                </div>
+                <div class="learnings-grid">
+
+                    <div class="learning-card reveal reveal-delay-1">
+                        <div class="learning-icon">⚙️</div>
+                        <h3>Joint Torque Budgeting</h3>
+                        <p>
+                            I underestimated the torque demand on the shoulder joint in the first revision —
+                            the servo stalled under the arm's own weight at full extension.
+                            Recalculating with proper moment arms and switching to a higher-torque servo
+                            solved this and taught me to always design with worst-case loading.
+                        </p>
+                    </div>
+
+                    <div class="learning-card reveal reveal-delay-2">
+                        <div class="learning-icon">📐</div>
+                        <h3>Parametric CAD Discipline</h3>
+                        <p>
+                            After the first torque revision required changes to four separate parts,
+                            I restructured the SolidWorks assembly to drive all link lengths from a
+                            single master sketch. Subsequent changes then propagated automatically —
+                            a lesson in design-for-change from the start.
+                        </p>
+                    </div>
+
+                    <div class="learning-card reveal reveal-delay-3">
+                        <div class="learning-icon">🐍</div>
+                        <h3>Python I²C Timing</h3>
+                        <p>
+                            Sending all four PWM updates sequentially introduced a visible stagger between
+                            joints. I switched to batching I²C writes into a single transaction using the
+                            PCA9685's auto-increment register mode, which eliminated the lag and gave
+                            the arm a much smoother, more coordinated motion.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Call to Action ─────────────────────── -->
+        <section id="project-cta">
+            <div class="container">
+                <div class="cta-box reveal">
+                    <p class="cta-label">// Explore Further</p>
+                    <h2 class="cta-title">See It in Action</h2>
+                    <p class="cta-description">
+                        Full SolidWorks files and Python source code are on GitHub. A demo walkthrough
+                        is available on YouTube.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary" id="cta-github">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                            </svg>
+                            View Source Code on GitHub
+                        </a>
+                        <a href="#project-video" class="btn btn-outline" id="cta-youtube">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75C14.13 2 12.64 2 12 2s-2.13 0-3.82 1.94a4.83 4.83 0 0 1-3.77 2.75C3 7.37 2 9.38 2 12s1 4.63 2.41 5.31a4.83 4.83 0 0 1 3.77 2.75C9.87 22 11.36 22 12 22s2.13 0 3.82-1.94a4.83 4.83 0 0 1 3.77-2.75C21 16.63 22 14.62 22 12s-1-4.63-2.41-5.31zM10 15.5v-7l6 3.5-6 3.5z" />
+                            </svg>
+                            Watch Full Video on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────── -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo">M<span>.</span>Abdela</div>
+            <p class="footer-copy">Designed &amp; built with <span>♥</span> by Merwan Abdela &nbsp;·&nbsp; 2025</p>
+            <div class="footer-socials">
+                <a href="https://linkedin.com/in/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/merwanabdela" target="_blank" rel="noopener" class="footer-social-link"
+                    aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                </a>
+                <a href="mailto:merwan@example.com" class="footer-social-link" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="project.js"></script>
+
+</body>
+
+</html>
