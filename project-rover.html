@@ -26,12 +26,39 @@
         content="A four-wheeled ground rover with ultrasonic obstacle avoidance. SolidWorks chassis, 3D-printed, Arduino C++ navigation." />
     <meta name="twitter:image" content="https://merwanabdela.com/assets/projects/rover_project.png" />
 
-    <!-- Google Fonts -->
+    <!-- Critical above-fold styles -->
+    <style>
+        body {
+            background: #080c14;
+            color: #e2e8f0;
+            margin: 0
+        }
+
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(8, 12, 20, .85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid #1e2d45;
+            padding: 16px 0
+        }
+    </style>
+
+    <!-- Google Fonts (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@700;900&family=Fira+Code:wght@400&display=swap" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap"
-        rel="stylesheet" />
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@700;900&family=Fira+Code:wght@400&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@700;900&family=Fira+Code:wght@400&display=swap"
+            rel="stylesheet" />
+    </noscript>
 
     <!-- Shared design tokens -->
     <link rel="stylesheet" href="css/styles.css" />
@@ -283,7 +310,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/project.js"></script>
+    <script src="js/project.js" defer></script>
 
 </body>
 

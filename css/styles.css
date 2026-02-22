@@ -1084,3 +1084,25 @@ footer {
         text-align: center;
     }
 }
+
+/* ─────────────────────────────────────────────────
+   Reduced Motion – disable animations for a11y & perf
+───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ── GPU-hint for animated elements ── */
+.reveal,
+.project-image,
+.hero-orb {
+    will-change: transform, opacity;
+}
